@@ -655,8 +655,11 @@ var Oauth2 = (function () {
         if (oauthData.state) {
             data.state = oauthData.state;
         }
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
         var exchangeForTokenUrl = this.config.baseUrl ? joinUrl(this.config.baseUrl, this.defaults.url) : this.defaults.url;
-        return this.http.post(exchangeForTokenUrl, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } });
+        return this.http.post(exchangeForTokenUrl, JSON.stringify(data), { headers: headers });
     };
     Oauth2.prototype.buildQueryString = function () {
         var _this = this;
